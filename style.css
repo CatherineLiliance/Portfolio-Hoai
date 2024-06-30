@@ -13,6 +13,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 50px;
 }
 
 p {
@@ -29,20 +30,29 @@ a,
 /* DESKTOP NAV */
 
 nav,
+
+.desktop-nav {
+  position:fixed;
+  width: 100%;
+  background-color: rgba(148, 148, 148, 0.5);
+    z-index: 9999;
+  }
+
 .nav-links {
   display: flex;
 }
 
 nav {
   justify-content: space-around;
-  align-items: center;
-  height: 17vh;
+  height: 7vh;
+  padding-top: 6pt;
 }
 
 .nav-links {
-  gap: 2rem;
+  gap: 3rem;
   list-style: none;
   font-size: 1.5rem;
+  justify-content: center
 }
 
 a {
@@ -52,18 +62,10 @@ a {
 }
 
 a:hover {
-  color: grey;
+  color: rgb(255, 255, 255);
   text-decoration: underline;
   text-underline-offset: 1rem;
-  text-decoration-color: rgb(181, 181, 181);
-}
-
-.logo {
-  font-size: 2rem;
-}
-
-.logo:hover {
-  cursor: default;
+  text-decoration-color: rgb(255, 255, 255);
 }
 
 /* HAMBURGER MENU */
