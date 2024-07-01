@@ -34,7 +34,7 @@ nav,
 .desktop-nav {
   position:fixed;
   width: 100%;
-  background-color: rgba(148, 148, 148, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 9999;
   }
 
@@ -62,10 +62,10 @@ a {
 }
 
 a:hover {
-  color: rgb(255, 255, 255);
+  color: rgb(170, 170, 170);
   text-decoration: underline;
   text-underline-offset: 1rem;
-  text-decoration-color: rgb(255, 255, 255);
+  text-decoration-color: rgb(170, 170, 170);
 }
 
 /* HAMBURGER MENU */
