@@ -5,8 +5,8 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 window.addEventListener('scroll', function() {
-  const header = document.getElementById('header');
-  if (window.scrollY > 50) { // Nếu cuộn trang xuống hơn 50px
+  const header = document.getElementById('desktop-nav');
+  if (window.scrollY > 5) {
       header.classList.add('shadow');
   } else {
       header.classList.remove('shadow');

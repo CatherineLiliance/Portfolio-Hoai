@@ -20,6 +20,10 @@ p {
   color: rgb(85, 85, 85);
 }
 
+.text-container p{
+  text-align: justify;
+}
+
 /* TRANSITION */
 
 a,
@@ -34,8 +38,11 @@ nav,
 .desktop-nav {
   position:fixed;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 9999;
+  background-color: white;
+  }
+  .shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
 .nav-links {
@@ -432,3 +439,4 @@ footer {
 footer p {
   text-align: center;
 }
+
