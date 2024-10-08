@@ -216,9 +216,8 @@ a:hover {
   /* Hamburger nav fixed at top for mobile */
   #hamburger-nav {
     position: fixed;
-    display: flex;
+    align-items: center;
     justify-content: space-between; /* Đẩy logo sang trái và menu sang phải */
-    align-items: center; /* Căn giữa theo chiều dọc */
     height: 45px;
     top: 0;
     left: 0;
