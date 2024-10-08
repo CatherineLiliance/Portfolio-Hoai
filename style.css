@@ -2,6 +2,48 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+  @keyframes slideTop {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes slideBottom {
+    0% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
 * {
   padding: 0;
   margin: 0;
@@ -76,9 +118,18 @@ a:hover {
 }
 
 /* HAMBURGER MENU */
+/* Chỉ áp dụng cho di động */
 
 #hamburger-nav {
   display: none;
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ */
 }
 
 .hamburger-menu {
@@ -125,6 +176,7 @@ a:hover {
 
 .menu-links li {
   list-style: none;
+  padding: 15px 20px;
 }
 
 .menu-links.open {
@@ -143,6 +195,10 @@ a:hover {
   transform: rotate(-45deg) translate(10px, -5px);
 }
 
+.hamburger-icon span {
+  transition: all 0.4s ease;
+}
+
 .hamburger-icon span:first-child {
   transform: none;
 }
@@ -154,6 +210,81 @@ a:hover {
 .hamburger-icon span:first-child {
   transform: none;
 }
+
+/* Chỉ áp dụng cho di động */
+@media (max-width: 768px) {
+  /* Hamburger nav fixed at top for mobile */
+  #hamburger-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ */
+  }
+
+  /* Side menu expands fully */
+  .menu-links {
+    position: fixed;
+    top: 60px; /* Đẩy menu xuống dưới thanh nav */
+    left: 0;
+    width: 100%; /* Mở rộng menu ra toàn bộ chiều rộng màn hình */
+    max-height: 0;
+    overflow: hidden;
+    background-color: white;
+    transition: max-height 0.4s ease; /* Hiệu ứng mở rộng menu */
+  }
+
+  .menu-links.open {
+    max-height: 300px; /* Đảm bảo menu mở đủ để hiển thị tất cả liên kết */
+  }
+
+  /* Ensure text in menu is visible */
+  .menu-links a {
+    display: block;
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 10px 20px;
+  }
+
+  /* Đảm bảo không chèn lên nội dung */
+  body {
+    margin-top: 70px; /* Đẩy nội dung xuống dưới thanh navigation */
+  }
+
+  /* Đẩy phần hình ảnh và nội dung phía dưới xuống tự nhiên */
+  section {
+    padding-top: 80px; /* Đảm bảo không chèn lên ảnh dưới */
+  }
+
+  /* Hamburger icon sử dụng Font Awesome */
+  .hamburger-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .hamburger-icon.open:before {
+    content: "\f00d"; /* Font Awesome 'X' để đóng menu */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+
+  .hamburger-icon:before {
+    content: "\f0c9"; /* Font Awesome 'Bars' để mở menu */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+
+  /* Đảm bảo hình ảnh không bị chèn bởi thanh nav */
+  #profile .section__pic-container {
+    margin-top: 80px; /* Điều chỉnh để đẩy hình ảnh xuống tự nhiên */
+  }
+}
+
+
+
 
 /* SECTIONS */
 
@@ -175,7 +306,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  height: 80vh;
+  height: 100vh;
 }
 
 .section__pic-container {
@@ -188,6 +319,7 @@ section {
 .section__text {
   align-self: center;
   text-align: center;
+  
 }
 
 .section__text p {
@@ -196,16 +328,31 @@ section {
 
 .section__text__p1 {
   text-align: center;
+  animation: slideRight 1s ease forwards;
 }
 
 .section__text__p2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
+  font-size: 32pt;
+  font-weight: 700;
+  opacity: 0;
+  animation: slideBottom 1s ease forwards;
+  animation-delay:.7s;
+}
+
+.section__text__p2:nth-of-type(2){
+  margin-bottom: 30px;
+  animation: slideTop 1s ease forwards;
+  animation-delay: .7s; 
+}
+.section__text__p2 span {
+  color: #8B0000;
 }
 
 .title {
   font-size: 3rem;
   text-align: center;
+  text-decoration: bold;
+  animation: slideLeft 1s ease forwards;
 }
 
 #socials-container {
