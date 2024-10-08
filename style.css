@@ -216,15 +216,28 @@ a:hover {
   /* Hamburger nav fixed at top for mobile */
   #hamburger-nav {
     position: fixed;
+    display: flex;
+    justify-content: space-between; /* Đẩy logo sang trái và menu sang phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 45px;
     top: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
     z-index: 1000;
     background-color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ */
   }
 
+  .hamburger-menu {
+    padding-right: 50px; /* Đẩy icon sang phải */
+  }
+
+  #hamburger-nav .logo {
+    font-size: 1.5rem;
+    padding-left: 20px; /* Thêm khoảng cách từ lề trái */
+  }
   /* Side menu expands fully */
   .menu-links {
     position: fixed;
