@@ -33,4 +33,26 @@ var typed= new Typed(".text",{
   showCursor: true,      // Show a blinking cursor
   cursorChar: '|',       // Customize the cursor character
 }); 
-                        // END//
+
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.animate-on-scroll');
+  const windowHeight = window.innerHeight;
+
+  elements.forEach(element => {
+    const elementPosition = element.getBoundingClientRect().top;
+    
+    if (elementPosition < windowHeight - 100) { // Adjust threshold as needed
+      element.classList.add('animated');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateOnScroll);
+
+
+/*keo xuong skill*/ 
+function toggleSkills(element) {
+  const parentContainer = element.parentNode; // Find the parent .details-container
+  parentContainer.classList.toggle('open'); // Toggle the open class
+}
+

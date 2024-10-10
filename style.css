@@ -2,7 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-
 @keyframes slideRight {
   0% {
     transform: translateX(-100px);
@@ -116,6 +115,16 @@ a:hover {
   text-underline-offset: 1rem;
   text-decoration-color: rgb(170, 170, 170);
 }
+
+.animated {
+  animation: slideRight 1s ease forwards; /* or any other animation */
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateX(-100px); /* Adjust based on desired effect */
+}
+
 
 /* HAMBURGER MENU */
 /* Chỉ áp dụng cho di động */
@@ -492,7 +501,7 @@ section {
   color: rgb(85, 85, 85);
   font-weight: 600;
   font-size: 1.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .experience-details-container {
@@ -597,5 +606,26 @@ footer {
 
 footer p {
   text-align: center;
+}
+
+/*keo xuong ki nang*/
+.skills-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.details-container.open .skills-content {
+  max-height: 500px; /* Adjust as needed for your content */
+}
+
+.arrow {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.details-container.open .arrow {
+  transform: rotate(180deg); /* Rotates arrow when open */
 }
 
