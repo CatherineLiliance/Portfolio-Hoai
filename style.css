@@ -223,6 +223,14 @@ a:hover {
 /* Chỉ áp dụng cho di động */
 @media (max-width: 768px) {
   /* Hamburger nav fixed at top for mobile */
+  .slider-container {
+    max-width: 100%;
+    padding: 0 10px; /* Thêm padding để tạo khoảng cách */
+  }
+
+  .project-img {
+    width: 90%; /* Giảm chiều rộng để ảnh không sát viền màn hình */
+  }
   #hamburger-nav {
     position: fixed;
     align-items: center;
@@ -303,8 +311,7 @@ a:hover {
     margin-top: 80px; /* Điều chỉnh để đẩy hình ảnh xuống tự nhiên */
   }
 }
-
-
+/* Adjust contact section for mobile */
 
 
 /* SECTIONS */
@@ -531,30 +538,105 @@ article .icon {
 }
 
 /* PROJECTS SECTION */
-
+/* Make sure the Projects section is consistent with other sections */
 #projects {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  flex-direction: column;
+  margin: 0 auto; /* Center the section itself */
+  padding: 0 10rem; /* Add padding to make the content align with other sections */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 768px) {
+  #projects {
+    padding: 0 1rem; /* Decrease padding on mobile to avoid content spilling out */
+  }
+}
+
+.slider {
+  width: 100%; /* Ensure full width for the slider */
+  max-width: 1300px; /* Optional: Adjust the max-width to be consistent with other sections */
+  height: 700px;
+  margin: 0 auto; /* Center the slider */
   position: relative;
+  overflow: hidden;
 }
 
-.color-container {
-  border-color: rgb(163, 163, 163);
-  background: rgb(250, 250, 250);
+.slider .list {
+  display: flex; /* Flexbox for horizontal alignment */
+  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
 }
 
-.project-img {
-  border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+.slider .list .item {
+    min-width: 100%;
+    box-sizing: border-box;
 }
 
-.project-title {
-  margin: 1rem;
-  color: black;
+.slider .list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.project-btn {
-  color: black;
-  border-color: rgb(163, 163, 163);
+.slider .buttons {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 10px; /* Move the left button inward */
+  right: 10px; /* Move the right button inward */
+  width: calc(100% - 20px); /* Ensure the buttons don't overflow the container */
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider .buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.slider .buttons button:hover {
+  background-color: rgba(255, 255, 255, 1); /* Make buttons fully visible on hover */
+}
+
+.slider .dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.slider .dots li {
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.slider .dots li.active {
+    width: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .slider {
+        height: 400px;
+    }
 }
 
 /* CONTACT */
@@ -607,6 +689,29 @@ footer {
 footer p {
   text-align: center;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex: 1;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  margin-top: auto;
+}
+
+
 
 /*keo xuong ki nang*/
 .skills-content {

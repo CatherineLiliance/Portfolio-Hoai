@@ -56,3 +56,81 @@ function toggleSkills(element) {
   parentContainer.classList.toggle('open'); // Toggle the open class
 }
 
+
+window.onload = function() {
+  const slider = document.querySelector('.slider .list');
+  const items = document.querySelectorAll('.slider .list .item');
+  const next = document.getElementById('next');
+  const prev = document.getElementById('prev');
+  const dots = document.querySelectorAll('.slider .dots li');
+  let lengthItems = items.length - 1;
+  let active = 0;
+
+  let startX = 0;
+  let endX = 0;
+
+  // Function to update the slider
+  function updateSlider() {
+    let itemWidth = items[active].clientWidth;
+    slider.style.transform = `translateX(-${active * itemWidth}px)`;
+    document.querySelector('.slider .dots li.active').classList.remove('active');
+    dots[active].classList.add('active');
+  }
+
+  // Next button event listener
+  next.onclick = function() {
+    active = active + 1 <= lengthItems ? active + 1 : 0;
+    updateSlider();
+    resetInterval();
+  };
+
+  // Previous button event listener
+  prev.onclick = function() {
+    active = active - 1 >= 0 ? active - 1 : lengthItems;
+    updateSlider();
+    resetInterval();
+  };
+
+  // Dots click event to navigate to a specific slide
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      active = index;
+      updateSlider();
+      resetInterval();
+    });
+  });
+
+  // Swipe functionality for mobile devices
+  slider.addEventListener('touchstart', function(event) {
+    startX = event.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchmove', function(event) {
+    endX = event.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', function() {
+    if (startX - endX > 50) {
+      // Swipe left (go to next slide)
+      active = active + 1 <= lengthItems ? active + 1 : 0;
+      updateSlider();
+      resetInterval();
+    } else if (endX - startX > 50) {
+      // Swipe right (go to previous slide)
+      active = active - 1 >= 0 ? active - 1 : lengthItems;
+      updateSlider();
+      resetInterval();
+    }
+  });
+
+  // Auto slide
+  let refreshInterval = setInterval(() => { next.click(); }, 3000);
+
+  // Function to reset the auto-slide interval
+  function resetInterval() {
+    clearInterval(refreshInterval);
+    refreshInterval = setInterval(() => { next.click(); }, 3000);
+  }
+
+  updateSlider(); // Initial update
+};
