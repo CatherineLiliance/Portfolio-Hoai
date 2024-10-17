@@ -286,6 +286,7 @@ a:hover {
   /* Đẩy phần hình ảnh và nội dung phía dưới xuống tự nhiên */
   section {
     padding-top: 80px; /* Đảm bảo không chèn lên ảnh dưới */
+    padding-bottom: 160px;
   }
 
   /* Hamburger icon sử dụng Font Awesome */
@@ -335,6 +336,8 @@ section {
   justify-content: center;
   gap: 5rem;
   height: 100vh;
+  padding-top: 170px;
+  margin-bottom: 190px;
 }
 
 .section__pic-container {
@@ -502,6 +505,8 @@ section {
 
 #experience {
   position: relative;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .experience-sub-title {
@@ -545,7 +550,6 @@ article .icon {
   align-items: center; /* Center content vertically */
   flex-direction: column;
   margin: 0 auto; /* Center the section itself */
-  padding: 0 10rem; /* Add padding to make the content align with other sections */
   box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
@@ -646,6 +650,7 @@ article .icon {
   justify-content: center;
   flex-direction: column;
   height: 70vh;
+  padding-top: 100px;
 }
 
 .contact-info-upper-container {
