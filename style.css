@@ -65,6 +65,26 @@ p {
   text-align: justify;
 }
 
+/* Add cursor pointer for clickable headings */
+.experience-sub-title {
+  cursor: pointer; /* Add pointer when hovering over the text */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.experience-sub-title:hover {
+  color: #8B0000; /* Change the color on hover for better user feedback */
+}
+
+.skills-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out; /* Smooth transition when opening */
+}
+
+.details-container.open .skills-content {
+  max-height: 500px; /* Adjust as needed for your content */
+}
+
 /* TRANSITION */
 
 a,
@@ -229,7 +249,10 @@ a:hover {
   }
 
   .project-img {
-    width: 90%; /* Giảm chiều rộng để ảnh không sát viền màn hình */
+    width: 95%; /* Ensure image doesn't touch the container's edges */
+  height: auto;
+  max-height: 500px; /* Limit image height for large screens */
+  object-fit: cover; /* Ensure images maintain aspect ratio */
   }
   #hamburger-nav {
     position: fixed;
@@ -480,14 +503,44 @@ section {
   bottom: 2.5rem;
 }
 
-.details-container {
-  padding: 1.5rem;
+.details-container-2{
+  padding: 1rem;
   flex: 1;
   background: white;
   border-radius: 2rem;
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
   text-align: center;
+}
+
+.details-container {
+  max-height: 3rem; /* Small height for the title only */
+  overflow: hidden;
+  padding: 1rem;
+  flex: 1;
+  background: white;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  text-align: center;
+  transition: max-height 0.5s ease-in-out; /* Smooth expansion */
+}
+
+/* When the section is clicked (open state), reveal the content */
+.details-container.open {
+  max-height: 600px; /* Enough height to show all content */
+}
+
+.details-container h3 {
+  white-space: normal; /* Allow the text to wrap normally */
+  word-wrap: break-word; /* Ensure long words break onto the next line */
+  font-size: 1.1rem;
+}
+
+.details-container p {
+  white-space: normal; /* Allow the text to wrap normally */
+  word-wrap: break-word; /* Ensure long words break onto the next line */
+  font-size: 1rem;
 }
 
 .section-container {
@@ -510,6 +563,7 @@ section {
 }
 
 .experience-sub-title {
+  cursor: pointer;
   color: rgb(85, 85, 85);
   font-weight: 600;
   font-size: 1.75rem;
@@ -553,10 +607,84 @@ article .icon {
   box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
+/* Style for the project image container */
+.project-img-container {
+  position: relative; /* To position the button over the image */
+  width: 100%; /* Ensure the image container takes full width */
+  max-width: 700px; /* Set a reasonable max-width for large screens */
+  height: auto;
+  overflow: hidden;
+}
+
+/* Style for the project images */
+.project-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Make sure the image covers the container without stretching */
+  max-height: none; /* Limit the height to prevent overly large images*/
+  transition: opacity 0.3s ease; /* Smooth transition for fading effect */
+}
+
+/* Hover effect: Fade the image */
+.project-img-container:hover .project-img {
+  opacity: 0.7; /* Adjust hover opacity for clearer visibility */
+  transition: opacity 0.4s ease; /* Smooth hover transition */
+}
+
+/* Style for the button (hidden by default) */
+.project-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the button */
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #000; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth transition for showing the button */
+}
+
+/* Show the button when hovering over the container */
+.project-img-container:hover .project-btn {
+  opacity: 1; /* Show the button */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition for showing the button */
+}
+
+
 /* Adjust for mobile screens */
 @media (max-width: 768px) {
   #projects {
     padding: 0 1rem; /* Decrease padding on mobile to avoid content spilling out */
+  }
+  .project-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .project-img-container {
+    max-width: 200%;
+    height: 300px; /* Reduce height on smaller screens */
+  }
+  .slider .buttons {
+    position: absolute;
+    top: 35%; /* Center vertically */
+    left: 35px; /* Move the left button inward */
+    right: 35px; /* Move the right button inward */
+  
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .project-img-container {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -567,30 +695,33 @@ article .icon {
   margin: 0 auto; /* Center the slider */
   position: relative;
   overflow: hidden;
+  transition: transform 0.6s ease-in-out; /* Smoother sliding animation */
 }
 
 .slider .list {
   display: flex; /* Flexbox for horizontal alignment */
   transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+  width: 100%;
 }
 
 .slider .list .item {
     min-width: 100%;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .slider .list img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .slider .buttons {
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 10px; /* Move the left button inward */
-  right: 10px; /* Move the right button inward */
-  width: calc(100% - 20px); /* Ensure the buttons don't overflow the container */
+  top: 35%; /* Center vertically */
+  left: 35px; /* Move the left button inward */
+  right: 35px; /* Move the right button inward */
+
   display: flex;
   justify-content: space-between;
 }
