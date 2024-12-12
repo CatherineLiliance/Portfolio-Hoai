@@ -337,6 +337,10 @@ a:hover {
 }
 /* Adjust contact section for mobile */
 
+.section__pic-container img {
+  border-radius: 30px; /* Điều chỉnh giá trị này để bo tròn góc ảnh theo ý muốn */
+}
+
 
 /* SECTIONS */
 
@@ -417,10 +421,33 @@ section {
 }
 
 /* ICONS */
-
 .icon {
   cursor: pointer;
   height: 2rem;
+  transition: transform 0.2s ease-in-out; /* Hiệu ứng mượt */
+}
+
+/* Khi nhấn vào icon */
+.icon:active {
+  transform: scale(1.2); /* Phóng to khi nhấn */
+}
+
+/* Khi hover vào icon */
+.icon:hover {
+  animation: pulse 0.8s ease-in-out; /* Thêm hiệu ứng thu phóng */
+}
+
+/* Định nghĩa animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* BUTTONS */
@@ -596,6 +623,144 @@ article .icon {
   cursor: default;
 }
 
+/* Section Styling */
+#talents-weaknesses {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 50px 100px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h3, h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Skills List */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.skills-list li span {
+  font-weight: bold;
+  flex: 1;
+}
+
+/* Stars */
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  background-color: #e0e0e0;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star.filled {
+  background-color: orange;
+}
+
+.star:hover {
+  background-color: gold;
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* Psychological Stats */
+.psychological-stats div {
+  margin-bottom: 20px;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f0f0f0;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+.bar.physical {
+  width: 40%;
+  background-color: #ff7f50; /* Cam sáng */
+}
+
+.bar.mental {
+  width: 80%;
+  background-color: #32cd32; /* Xanh lá cây đậm */
+}
+
+.bar.intuitive {
+  width: 60%;
+  background-color: #1e90ff; /* Xanh dương */
+}
+
+.bar.emotional {
+  width: 50%;
+  background-color: #ff4500; /* Đỏ cam */
+}
+
+/* Hover Effect on Bars */
+.bar-container:hover .bar {
+  transform: scaleY(1.2);
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #talents-weaknesses {
+    padding: 15px;
+  }
+
+  .skills-list li {
+    flex-wrap: wrap;
+  }
+
+  .skills-list li span {
+    flex: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .stars {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .star {
+    width: 16px;
+    height: 16px;
+  }
+
+  .bar-container {
+    height: 8px;
+  }
+}
+
+
 /* PROJECTS SECTION */
 /* Make sure the Projects section is consistent with other sections */
 #projects {
@@ -612,14 +777,14 @@ article .icon {
   position: relative; /* To position the button over the image */
   width: 100%; /* Ensure the image container takes full width */
   max-width: 700px; /* Set a reasonable max-width for large screens */
-  height: auto;
+  height: 400px;
   overflow: hidden;
 }
 
 /* Style for the project images */
 .project-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover; /* Make sure the image covers the container without stretching */
   max-height: none; /* Limit the height to prevent overly large images*/
   transition: opacity 0.3s ease; /* Smooth transition for fading effect */
@@ -647,6 +812,7 @@ article .icon {
   text-decoration: none;
   opacity: 0; /* Hidden by default */
   transition: opacity 0.3s ease; /* Smooth transition for showing the button */
+  z-index: 10;
 }
 
 /* Show the button when hovering over the container */

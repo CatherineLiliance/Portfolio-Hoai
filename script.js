@@ -23,7 +23,7 @@ window.addEventListener('scroll', function() {
 });
                         // Dùng cho đoạn viết chữ// 
 var typed= new Typed(".text",{
-  strings:["21 years old", "a Vietnamese", "a Law Student"], 
+  strings:["22 years old", "a Vietnamese", "a Paralegal"], 
   typeSpeed: 50,  // Slow down the typing speed
   backSpeed: 50,  // Slow down the backspace speed
   backDelay: 1500,  // Increase delay before starting to backspace
