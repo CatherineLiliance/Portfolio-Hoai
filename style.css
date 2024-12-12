@@ -43,6 +43,21 @@
     }
   }
 
+/* Định nghĩa animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/*END KEYFRAMES*/
+
+
 * {
   padding: 0;
   margin: 0;
@@ -57,45 +72,14 @@ html {
   scroll-padding-top: 50px;
 }
 
-p {
-  color: rgb(85, 85, 85);
-}
-
-.text-container p{
-  text-align: justify;
-}
-
-/* Add cursor pointer for clickable headings */
-.experience-sub-title {
-  cursor: pointer; /* Add pointer when hovering over the text */
-  transition: color 0.3s ease; /* Smooth hover effect */
-}
-
-.experience-sub-title:hover {
-  color: #8B0000; /* Change the color on hover for better user feedback */
-}
-
-.skills-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out; /* Smooth transition when opening */
-}
-
-.details-container.open .skills-content {
-  max-height: 500px; /* Adjust as needed for your content */
-}
-
 /* TRANSITION */
-
 a,
 .btn {
   transition: all 300ms ease;
 }
 
-/* DESKTOP NAV */
-
+/*thanh bar đầu*/
 nav,
-
 .desktop-nav {
   position:fixed;
   width: 100%;
@@ -106,48 +90,26 @@ nav,
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-.nav-links {
-  display: flex;
-}
+  .nav-links {
+    display: flex;
+  }
+  
+  nav {
+    justify-content: space-around;
+    height: 7vh;
+    padding-top: 6pt;
+  }
+  
+  .nav-links {
+    gap: 3rem;
+    list-style: none;
+    font-size: 1.5rem;
+    justify-content: center
+  }
 
-nav {
-  justify-content: space-around;
-  height: 7vh;
-  padding-top: 6pt;
-}
-
-.nav-links {
-  gap: 3rem;
-  list-style: none;
-  font-size: 1.5rem;
-  justify-content: center
-}
-
-a {
-  color: black;
-  text-decoration: none;
-  text-decoration-color: white;
-}
-
-a:hover {
-  color: rgb(170, 170, 170);
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: rgb(170, 170, 170);
-}
-
-.animated {
-  animation: slideRight 1s ease forwards; /* or any other animation */
-}
-
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateX(-100px); /* Adjust based on desired effect */
-}
-
+  /*hết thanh bar đầu*/
 
 /* HAMBURGER MENU */
-/* Chỉ áp dụng cho di động */
 
 #hamburger-nav {
   display: none;
@@ -230,15 +192,70 @@ a:hover {
 
 .hamburger-icon span:first-child {
   transform: none;
-}
-
-.hamburger-icon span:first-child {
   opacity: 1;
 }
+/*hết hamburger bar*/
 
-.hamburger-icon span:first-child {
-  transform: none;
+.experience-sub-title:hover {
+  color: #8B0000; /* Change the color on hover for better user feedback */
 }
+
+
+/* DESKTOP NAV */
+
+a {
+  color: black;
+  text-decoration: none;
+  text-decoration-color: white;
+}
+
+a:hover {
+  color: rgb(170, 170, 170);
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: rgb(170, 170, 170);
+}
+
+.animated {
+  animation: slideRight 1s ease forwards; /* or any other animation */
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateX(-100px); /* Adjust based on desired effect */
+}
+
+/*section about*/
+.text-container p{
+  text-align: justify;
+}
+/* ABOUT SECTION */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about-details-container {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about-containers,
+.about-details-container {
+  display: flex;
+}
+
+.about-pic {
+  border-radius: 2rem;
+}
+
+/*end section about*/
 
 /* Chỉ áp dụng cho di động */
 @media (max-width: 768px) {
@@ -289,10 +306,6 @@ a:hover {
     transition: max-height 0.4s ease; /* Hiệu ứng mở rộng menu */
   }
 
-  .menu-links.open {
-    max-height: 300px; /* Đảm bảo menu mở đủ để hiển thị tất cả liên kết */
-  }
-
   /* Ensure text in menu is visible */
   .menu-links a {
     display: block;
@@ -304,12 +317,6 @@ a:hover {
   /* Đảm bảo không chèn lên nội dung */
   body {
     margin-top: 70px; /* Đẩy nội dung xuống dưới thanh navigation */
-  }
-
-  /* Đẩy phần hình ảnh và nội dung phía dưới xuống tự nhiên */
-  section {
-    padding-top: 80px; /* Đảm bảo không chèn lên ảnh dưới */
-    padding-bottom: 160px;
   }
 
   /* Hamburger icon sử dụng Font Awesome */
@@ -334,7 +341,34 @@ a:hover {
   #profile .section__pic-container {
     margin-top: 80px; /* Điều chỉnh để đẩy hình ảnh xuống tự nhiên */
   }
+  .container {
+    flex-direction: column;
+    padding: 10px; /* Reduce padding for smaller screens */
 }
+
+.experience-details-container {
+  gap: 15px; /* Reduce gap for smaller screens */
+  padding: 10px;
+}
+
+.details-container:nth-of-type(1) {
+  order: -1; /* Forces Competencies to appear above Values */
+  margin-bottom: 20px; /* Adds spacing after Competencies */
+}
+
+.details-container:nth-of-type(2) {
+  order: 1;
+}
+
+h2 {
+  font-size: 1.2rem; /* Adjust heading size for mobile */
+}
+
+li {
+  font-size: 0.9rem; /* Adjust list item size for mobile */
+}
+}
+
 /* Adjust contact section for mobile */
 
 .section__pic-container img {
@@ -350,6 +384,7 @@ section {
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
+  padding-bottom: 160px;
 }
 
 .section-container {
@@ -437,18 +472,7 @@ section {
   animation: pulse 0.8s ease-in-out; /* Thêm hiệu ứng thu phóng */
 }
 
-/* Định nghĩa animation */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+
 
 /* BUTTONS */
 
@@ -498,32 +522,6 @@ section {
   gap: 1rem;
 }
 
-/* ABOUT SECTION */
-
-#about {
-  position: relative;
-}
-
-.about-containers {
-  gap: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-}
-
-.about-details-container {
-  justify-content: center;
-  flex-direction: column;
-}
-
-.about-containers,
-.about-details-container {
-  display: flex;
-}
-
-.about-pic {
-  border-radius: 2rem;
-}
-
 .arrow {
   position: absolute;
   right: -5rem;
@@ -541,21 +539,27 @@ section {
 }
 
 .details-container {
-  max-height: 3rem; /* Small height for the title only */
+  width: 100%; /* Full width for mobile screens */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  max-height: 4rem; /* Small height for the title only */
+  text-align: center;
   overflow: hidden;
-  padding: 1rem;
   flex: 1;
   background: white;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  text-align: center;
   transition: max-height 0.5s ease-in-out; /* Smooth expansion */
+  background-color: #f9f9f9; /* Màu nền sáng */
+  border: 1px solid #ccc; /* Đường viền nhạt */
 }
 
 /* When the section is clicked (open state), reveal the content */
 .details-container.open {
-  max-height: 600px; /* Enough height to show all content */
+  max-height: 5000px; /* Enough height to show all content */
+  overflow: visible; /* Hiển thị đầy đủ nội dung */
+}
+
+.details-container.open .skills-content {
+  max-height: 5000px; /* Adjust as needed for your content */
 }
 
 .details-container h3 {
@@ -566,7 +570,6 @@ section {
 
 .details-container p {
   white-space: normal; /* Allow the text to wrap normally */
-  word-wrap: break-word; /* Ensure long words break onto the next line */
   font-size: 1rem;
 }
 
@@ -591,172 +594,107 @@ section {
 
 .experience-sub-title {
   cursor: pointer;
-  color: rgb(85, 85, 85);
-  font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 0;
+  font-size: 2rem; /* Tăng kích thước chữ */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333; /* Màu chữ đậm */
+  transition: color 0.3s ease;
 }
 
 .experience-details-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  display: block;
+    flex-direction: column;
+    gap: 20px; /* Add spacing between sections */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .article-container {
-  display: flex;
-  text-align: initial;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 2.5rem;
-  justify-content: space-around;
+  display: grid; /* Hiển thị dạng lưới */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive */
+  text-align: center;
+  gap: 1rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: baseline
 }
 
+/* Phong cách từng mục */
 article {
   display: flex;
+  flex-direction: column; /* Xếp nội dung theo cột */
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px; /* Bo góc */
+  min-height: 100px; /* Đảm bảo chiều cao đồng đều */
+  max-width: 200px; /* Giới hạn chiều rộng */
+  word-wrap: break-word; /* Ngắt từ nếu quá dài */
   width: 10rem;
-  justify-content: space-around;
   gap: 0.5rem;
 }
 
+/* Hình ảnh và tiêu đề */
+ article img {
+  width: 30px; /* Kích thước icon */
+  margin-bottom: 5px; /* Khoảng cách giữa icon và chữ */
+}
+
+ article h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444; /* Màu chữ */
+  margin: 0;
+  white-space: nowrap; /* Không cho xuống dòng */
+  text-overflow: ellipsis; /* Hiển thị dấu "..." nếu văn bản bị cắt */
+}
 article .icon {
   cursor: default;
 }
 
 /* Section Styling */
-#talents-weaknesses {
-  font-family: Arial, sans-serif;
-  max-width: 1000px;
-  margin: 50px 100px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
 
 h3, h4 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Skills List */
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skills-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.skills-list li span {
-  font-weight: bold;
-  flex: 1;
-}
-
-/* Stars */
-.stars {
-  display: flex;
-  gap: 2px;
-}
-
-.star {
-  width: 20px;
-  height: 20px;
-  background-color: #e0e0e0;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-}
-
-.star.filled {
-  background-color: orange;
-}
-
-.star:hover {
-  background-color: gold;
-  transform: scale(1.2);
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-/* Psychological Stats */
-.psychological-stats div {
-  margin-bottom: 20px;
-}
-
-.bar-container {
-  width: 100%;
-  background-color: #f0f0f0;
-  height: 12px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 5px;
-}
-
-.bar {
-  height: 100%;
-  border-radius: 6px;
-  transition: width 0.5s ease, background-color 0.3s ease;
-}
-
-.bar.physical {
-  width: 40%;
-  background-color: #ff7f50; /* Cam sáng */
-}
-
-.bar.mental {
-  width: 80%;
-  background-color: #32cd32; /* Xanh lá cây đậm */
-}
-
-.bar.intuitive {
-  width: 60%;
-  background-color: #1e90ff; /* Xanh dương */
-}
-
-.bar.emotional {
-  width: 50%;
-  background-color: #ff4500; /* Đỏ cam */
-}
-
-/* Hover Effect on Bars */
-.bar-container:hover .bar {
-  transform: scaleY(1.2);
-  opacity: 0.9;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-  #talents-weaknesses {
-    padding: 15px;
+  .article-container {
+    grid-template-columns: repeat(1, 1fr); /* Mỗi hàng chỉ hiển thị 1 mục */
   }
 
-  .skills-list li {
-    flex-wrap: wrap;
+  article {
+    max-width: 300px; /* Giới hạn chiều rộng tối đa cho từng article */
+    width: 100%; /* Tự động chiếm toàn bộ chiều rộng khả dụng */
+    font-size: 1rem; /* Đặt kích thước chữ dễ đọc hơn */
+    margin: 0 auto; /* Căn giữa article trong container */
+    text-align: center; /* Canh giữa nội dung */
+    word-wrap: break-word; /* Đảm bảo từ dài không tràn ra ngoài */
+    height: fit-content;
   }
 
-  .skills-list li span {
-    flex: 100%;
-    text-align: left;
-    margin-bottom: 5px;
+  .experience-sub-title {
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 15px;
   }
-
-  .stars {
-    justify-content: center;
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem; /* Khoảng cách giữa các phần */
+    font-size: 1.2rem;
+    justify-items: center;
   }
-}
-
-@media (max-width: 480px) {
-  .star {
-    width: 16px;
-    height: 16px;
-  }
-
-  .bar-container {
-    height: 8px;
+  .about-containers, .about-details-container {
+    display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: flex-start;
   }
 }
 
@@ -1017,13 +955,10 @@ footer {
 
 /*keo xuong ki nang*/
 .skills-content {
-  max-height: 0;
+  max-height: 0px;
   overflow: hidden;
   transition: max-height 0.4s ease;
-}
-
-.details-container.open .skills-content {
-  max-height: 500px; /* Adjust as needed for your content */
+  
 }
 
 .arrow {
@@ -1035,4 +970,3 @@ footer {
 .details-container.open .arrow {
   transform: rotate(180deg); /* Rotates arrow when open */
 }
-
