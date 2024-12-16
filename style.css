@@ -700,191 +700,254 @@ h3, h4 {
 
 
 /* PROJECTS SECTION */
-/* Make sure the Projects section is consistent with other sections */
-#projects {
+/* Slider Container */
+.slider-container {
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  flex-direction: column;
-  margin: 0 auto; /* Center the section itself */
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
-}
-
-/* Style for the project image container */
-.project-img-container {
-  position: relative; /* To position the button over the image */
-  width: 100%; /* Ensure the image container takes full width */
-  max-width: 700px; /* Set a reasonable max-width for large screens */
-  height: 400px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 15px;
   overflow: hidden;
-  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-/* Style for the project images */
-.project-img {
+
+/* Slides Wrapper */
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 10px;
+  width: calc(100% * 4); /* Adjust for number of slides */
+}
+
+/* Individual Slide */
+.slide {
+  min-width: calc(100% - 10px);
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide img {
   display: block;
+  margin: 0 auto;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Make sure the image covers the container without stretching */
-  max-height: none; /* Limit the height to prevent overly large images*/
-  transition: opacity 0.3s ease; /* Smooth transition for fading effect */
+  max-height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-/* Hover effect: Fade the image */
-.project-img-container:hover .project-img {
-  opacity: 0.7; /* Adjust hover opacity for clearer visibility */
-  transition: opacity 0.4s ease; /* Smooth hover transition */
-}
-
-/* Style for the button (hidden by default) */
-.project-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the button */
-  background-color: #000; /* Button background color */
-  color: #fff; /* Button text color */
+/* Details Button */
+.details-button {
+  display: none;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 15px;
   text-align: center;
-  text-decoration: none;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease; /* Smooth transition for showing the button */
-  z-index: 10;
-  cursor: pointer; 
 }
 
-/* Show the button when hovering over the container */
-.project-img-container:hover .project-btn {
-  opacity: 1; /* Show the button */
-  transition: opacity 0.3s ease-in-out; /* Smooth transition for showing the button */
+.details-button:hover {
+  background-color: #0056b3;
 }
 
-
-/* Adjust for mobile screens */
-@media (max-width: 768px) {
-  #projects {
-    padding: 0 1rem; /* Decrease padding on mobile to avoid content spilling out */
-  }
-  .project-btn {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
-  }
-  
-  .project-img-container {
-    max-width: 200%;
-    height: 300px; /* Reduce height on smaller screens */
-  }
-  .slider .buttons {
-    position: absolute;
-    top: 35%; /* Center vertically */
-    left: 35px; /* Move the left button inward */
-    right: 35px; /* Move the right button inward */
-  
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .project-img-container {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-.slider {
-  width: 100%; /* Ensure full width for the slider */
-  max-width: 1300px; /* Optional: Adjust the max-width to be consistent with other sections */
-  height: 700px;
-  margin: 0 auto; /* Center the slider */
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out; /* Smoother sliding animation */
-}
-
-.slider .list {
-  display: flex; /* Flexbox for horizontal alignment */
-  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
-  width: 100%;
-}
-
-.slider .list .item {
-    min-width: 100%;
-    box-sizing: border-box;
-    width: 100%;
-    flex: 0 0 100%; /* Mỗi item chiếm toàn bộ chiều rộng slider */
-    box-sizing: border-box;
-}
-
-.slider .list img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.slider .buttons {
+/* Slider Navigation Buttons */
+.slider-buttons {
   position: absolute;
-  top: 35%; /* Center vertically */
-  left: 35px; /* Move the left button inward */
-  right: 35px; /* Move the right button inward */
-
+  top: 50%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  transform: translateY(-50%);
 }
 
-.slider .buttons button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+.slider-buttons button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
+  padding: 10px;
+  border-radius: 50%;
   font-size: 24px;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  transition: background-color 0.3s ease;
 }
 
-.slider .buttons button:hover {
-  background-color: rgba(255, 255, 255, 1); /* Make buttons fully visible on hover */
+.slider-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.slider .dots {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.slider .dots li {
-    list-style: none;
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    margin: 10px;
-    border-radius: 20px;
-    transition: 0.5s;
-}
-
-.slider .dots li.active {
-    width: 30px;
-}
-
-#next, #prev {
+/* Articles Container */
+.articles-container2 {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
   z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+.articles-container2.visible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.article-slides2 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+#articles-container2 .article {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 300px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+#articles-container2 .article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+#articles-container2 .article h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+#articles-container2 .article:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+#close-articles2 {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  z-index: 15;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#close-articles2:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .slides {
+    flex-direction: row;
+  }
+
+  .slide {
+    min-width: 90%;
+    padding: 10px;
+  }
+
+  .slider-buttons button {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .slide img {
+    height: 200px;
+  }
+
+  .details-button {
+    display: inline-block;
+  }
+
+  #articles-container2 .article {
+    min-width: 95%;
+    padding: 10px;
+  }
+}
+
+.articles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.articles-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#articles2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.article {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.article:hover {
+  transform: translateY(-5px);
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff6b6b;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 }
 
 
-@media screen and (max-width: 768px) {
-    .slider {
-        height: 400px;
-    }
-}
 /*END SLIDER*/
 
 /* CONTACT */

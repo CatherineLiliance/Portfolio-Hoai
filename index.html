@@ -240,40 +240,46 @@
     <section id="projects" class="slider-section">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
-      
-      <div class="slider">
-        <div class="list">
-          <div class="item"><div class="project-img-container">
-            <img src="./assets/project-1.png" alt="Project 1" class="project-img" />
-            <a href="https://example.com" class="project-btn">View Project</a>
-          </div></div>
-          <div class="item">
-            <div class="project-img-container">
-            <img src="./assets/project-1.png" alt="Project 1" class="project-img" />
-            <a href="https://example.com" class="project-btn">View Project</a>
+      <div class="slider-container">
+        <div class="slides">
+          <div class="slide" data-category="law">
+            <h2>Law</h2>
+            <p>Discover articles on commercial law, contract law, and more.</p>
+            <img src="https://cdn.prod.website-files.com/661449d93c487e20f443dd2e/66336bfecd49fc50bffa1576_legal-industry-trends-2023-1.png" alt="Law">
+            <button class="details-button">Xem thêm</button>
+          </div>
+          <div class="slide" data-category="linguistics">
+            <h2>Linguistics</h2>
+            <p>Explore language studies and tips for learning effectively.</p>
+            <img src="https://www.thoughtco.com/thmb/oF5iliNf8tWQRGoNgGN3oEP0a0g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg" alt="Linguistics">
+            <button class="details-button">Xem thêm</button>
+          </div>
+          <div class="slide" data-category="marketing">
+            <h2>Marketing</h2>
+            <p>Learn strategies and insights into modern marketing.</p>
+            <img src="https://viecmarketing.com/blog/wp-content/uploads/2021/10/thumb-3.jpg" alt="Marketing">
+            <button class="details-button">Xem thêm</button>
+          </div>
+          <div class="slide" data-category="books">
+            <h2>Books</h2>
+            <p>Discover must-read books and insightful reviews.</p>
+            <img src="https://images.squarespace-cdn.com/content/v1/5876279bbebafb82a7c81c00/f4e17d6a-81db-4a04-9bda-63c86c517778/IMG_3105.jpg" alt="Books">
+            <button class="details-button">Xem thêm</button>
           </div>
         </div>
-          <div class="item"><div class="project-img-container">
-            <a href="https://example.com" class="project-btn">View Project</a>
-            <img src="./assets/project-3.png" alt="Project 1" class="project-img" />
-            
-          </div></div>
+        <div class="slider-buttons">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
         </div>
-        
-        <!-- Navigation buttons -->
-        <div class="buttons">
-          <button id="prev">‹</button>
-          <button id="next">›</button>
-        </div>
-        
-        <!-- Dots for navigation -->
-        <ul class="dots">
-          <li class="active"></li>
-          <li></li>
-          <li></li>
-        </ul>
       </div>
     </section>
+
+<!-- Articles Container -->
+<div id="articles-container2" class="articles-container hidden">
+  <button id="close-articles2" class="close-button">×</button>
+  <div id="articles2" class="articles"></div>
+</div>
+    
     
     <!-- END PROJECTS -->
 

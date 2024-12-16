@@ -21,9 +21,10 @@ window.addEventListener('scroll', function() {
       header.classList.remove('shadow');
   }
 });
-                        // Dùng cho đoạn viết chữ// 
-var typed= new Typed(".text",{
-  strings:["22 years old", "a Vietnamese", "a Paralegal"], 
+
+// Dùng cho đoạn viết chữ
+var typed = new Typed(".text", {
+  strings: ["22 years old", "a Vietnamese", "a Paralegal"], 
   typeSpeed: 50,  // Slow down the typing speed
   backSpeed: 50,  // Slow down the backspace speed
   backDelay: 1500,  // Increase delay before starting to backspace
@@ -49,174 +50,96 @@ function animateOnScroll() {
 
 window.addEventListener('scroll', animateOnScroll);
 
-
 /*keo xuong skill*/ 
 function toggleSkills(element) {
   const parentContainer = element.parentNode; // Find the parent .details-container
   parentContainer.classList.toggle('open'); // Toggle the open class
 }
 
+// Modal logic for displaying articles
+function openArticleModal(pdfUrl) {
+  const modal = document.getElementById('article-modal');
+  const pdfViewer = document.getElementById('pdf-viewer');
+
+  if (!modal || !pdfViewer) {
+    console.error("Modal or PDF viewer element not found.");
+    return;
+  }
+
+  pdfViewer.src = pdfUrl; // Set the PDF source dynamically
+  modal.classList.remove('hidden'); // Show the modal
+  document.body.style.overflow = 'hidden'; // Disable background scrolling
+}
+
+function closeArticleModal() {
+  const modal = document.getElementById('article-modal');
+  const pdfViewer = document.getElementById('pdf-viewer');
+
+  if (!modal || !pdfViewer) {
+    console.error("Modal or PDF viewer element not found.");
+    return;
+  }
+
+  pdfViewer.src = ''; // Clear the PDF source
+  modal.classList.add('hidden'); // Hide the modal
+  document.body.style.overflow = ''; // Enable background scrolling
+}
+
+// Add click event to images to open articles
+function addImageClickEvents() {
+  const slides = document.querySelectorAll('.slide');
+
+  slides.forEach(slide => {
+    const img = slide.querySelector('img');
+    const button = slide.querySelector('.details-button');
+
+    if (img && button) {
+      const pdfUrl = button.getAttribute('onclick').match(/'(.*?)'/)?.[1]; // Extract URL from button onclick
+
+      if (pdfUrl) {
+        img.addEventListener('click', () => openArticleModal(pdfUrl));
+      }
+    }
+  });
+}
 
 window.onload = function() {
-  const slider = document.querySelector('.slider .list');
-  const items = document.querySelectorAll('.slider .list .item');
   const next = document.getElementById('next');
   const prev = document.getElementById('prev');
   const dots = document.querySelectorAll('.slider .dots li');
-  let lengthItems = items.length - 1;
-  let active = 0;
-
-  let startX = 0;
-  let endX = 0;
+  const slides = document.querySelectorAll('.slide');
+  let activeSlide = 0;
 
   // Function to update the slider
   function updateSlider() {
-    let itemWidth = items[active].clientWidth;
-    slider.style.transform = `translateX(-${active * itemWidth}px)`;
-    document.querySelector('.slider .dots li.active').classList.remove('active');
-    dots[active].classList.add('active');
+    slides.forEach((slide, index) => {
+      slide.style.display = index === activeSlide ? 'block' : 'none';
+    });
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === activeSlide);
+    });
   }
 
   // Next button event listener
   next.onclick = function() {
-    active = active + 1 <= lengthItems ? active + 1 : 0;
+    activeSlide = (activeSlide + 1) % slides.length;
     updateSlider();
-    resetInterval();
   };
 
   // Previous button event listener
   prev.onclick = function() {
-    active = active - 1 >= 0 ? active - 1 : lengthItems;
+    activeSlide = (activeSlide - 1 + slides.length) % slides.length;
     updateSlider();
-    resetInterval();
   };
 
-  // Dots click event to navigate to a specific slide
+  // Dot click event listener
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
-      active = index;
+      activeSlide = index;
       updateSlider();
-      resetInterval();
     });
   });
 
-  // Swipe functionality for mobile devices
-  slider.addEventListener('touchstart', function(event) {
-    startX = event.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchmove', function(event) {
-    endX = event.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchend', function() {
-    if (startX - endX > 50) {
-      // Swipe left (go to next slide)
-      active = active + 1 <= lengthItems ? active + 1 : 0;
-      updateSlider();
-      resetInterval();
-    } else if (endX - startX > 50) {
-      // Swipe right (go to previous slide)
-      active = active - 1 >= 0 ? active - 1 : lengthItems;
-      updateSlider();
-      resetInterval();
-    }
-  });
-
-  // Auto slide
-  let refreshInterval = setInterval(() => { next.click(); }, 3000);
-
-  // Function to reset the auto-slide interval
-  function resetInterval() {
-    clearInterval(refreshInterval);
-    refreshInterval = setInterval(() => { next.click(); }, 3000);
-  }
-
-  updateSlider(); // Initial update
-};
-
-window.onload = function() {
-  const slider = document.querySelector('.slider .list');
-  const items = document.querySelectorAll('.slider .list .item');
-  const next = document.getElementById('next');
-  const prev = document.getElementById('prev');
-  const dots = document.querySelectorAll('.slider .dots li');
-  let lengthItems = items.length - 1;
-  let active = 0;
-
-  let startX = 0;
-  let endX = 0;
-
-  // Function to update the slider
-  function updateSlider() {
-    let itemWidth = items[active].clientWidth;
-    slider.style.transform = `translateX(-${active * itemWidth}px)`;
-    document.querySelector('.slider .dots li.active')?.classList.remove('active');
-    dots[active].classList.add('active');
-  }
-
-  // Next button event listener
-  next.onclick = function() {
-    active = active + 1 <= lengthItems ? active + 1 : 0;
-    updateSlider();
-    resetInterval();
-  };
-
-  // Previous button event listener
-  prev.onclick = function() {
-    active = active - 1 >= 0 ? active - 1 : lengthItems;
-    updateSlider();
-    resetInterval();
-  };
-
-  // Dots click event to navigate to a specific slide
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      active = index;
-      updateSlider();
-      resetInterval();
-    });
-  });
-
-  // Swipe functionality for mobile devices
-  slider.addEventListener('touchstart', function(event) {
-    startX = event.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchmove', function(event) {
-    endX = event.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchend', function() {
-    if (startX - endX > 50) {
-      // Swipe left (go to next slide)
-      active = active + 1 <= lengthItems ? active + 1 : 0;
-    } else if (endX - startX > 50) {
-      // Swipe right (go to previous slide)
-      active = active - 1 >= 0 ? active - 1 : lengthItems;
-    }
-    updateSlider();
-    resetInterval();
-  });
-
-  // Auto slide
-  let refreshInterval = setInterval(() => { next.click(); }, 3000);
-
-  // Function to reset the auto-slide interval
-  function resetInterval() {
-    clearInterval(refreshInterval);
-    refreshInterval = setInterval(() => { next.click(); }, 3000);
-  }
-
-  // Stop auto-slide on mouse enter
-  slider.addEventListener('mouseenter', () => {
-    clearInterval(refreshInterval);
-  });
-
-  // Resume auto-slide on mouse leave
-  slider.addEventListener('mouseleave', () => {
-    resetInterval();
-  });
-
+  addImageClickEvents(); // Add events to images
   updateSlider(); // Initial update
 };
