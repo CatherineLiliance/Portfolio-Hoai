@@ -170,8 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
     img.addEventListener('click', () => {
       // Đổi URL PDF tương ứng từng bài báo
       const pdfUrls = [
-        './assets/2.pdf',
-        './assets/article-linguistics.pdf',
+        './assets/Ling.pdf',
+        './assets/3.pdf',
         './assets/article-marketing.pdf',
         './assets/article-books.pdf',
       ];
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   projectImages.forEach((img, index) => {
     const pdfUrls = [
       './assets/2.pdf',
-      './assets/article-linguistics.pdf',
+      './assets/Ling.pdf',
       './assets/article-marketing.pdf',
       './assets/article-books.pdf',
     ];
