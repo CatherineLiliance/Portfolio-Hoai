@@ -246,25 +246,21 @@
             <h2>Law</h2>
             <p>Discover articles on commercial law, contract law, and more.</p>
             <img src="https://cdn.prod.website-files.com/661449d93c487e20f443dd2e/66336bfecd49fc50bffa1576_legal-industry-trends-2023-1.png" alt="Law">
-            <button class="details-button">Xem thêm</button>
           </div>
           <div class="slide" data-category="linguistics">
             <h2>Linguistics</h2>
             <p>Explore language studies and tips for learning effectively.</p>
             <img src="https://www.thoughtco.com/thmb/oF5iliNf8tWQRGoNgGN3oEP0a0g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg" alt="Linguistics">
-            <button class="details-button">Xem thêm</button>
           </div>
           <div class="slide" data-category="marketing">
             <h2>Marketing</h2>
             <p>Learn strategies and insights into modern marketing.</p>
             <img src="https://viecmarketing.com/blog/wp-content/uploads/2021/10/thumb-3.jpg" alt="Marketing">
-            <button class="details-button">Xem thêm</button>
           </div>
           <div class="slide" data-category="books">
             <h2>Books</h2>
             <p>Discover must-read books and insightful reviews.</p>
             <img src="https://images.squarespace-cdn.com/content/v1/5876279bbebafb82a7c81c00/f4e17d6a-81db-4a04-9bda-63c86c517778/IMG_3105.jpg" alt="Books">
-            <button class="details-button">Xem thêm</button>
           </div>
         </div>
         <div class="slider-buttons">
@@ -280,6 +276,12 @@
   <div id="articles2" class="articles"></div>
 </div>
     
+<!-- Modal hiển thị PDF bài báo -->
+<div id="article-modal" class="modal hidden">
+  <button class="close-button" onclick="closeArticleModal()">×</button>
+  <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+</div>
+
     
     <!-- END PROJECTS -->
 

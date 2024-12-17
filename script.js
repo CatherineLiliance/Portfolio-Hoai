@@ -143,3 +143,72 @@ window.onload = function() {
   addImageClickEvents(); // Add events to images
   updateSlider(); // Initial update
 };
+
+function openArticleModal(pdfUrl) {
+  const modal = document.getElementById('article-modal');
+  const pdfViewer = document.getElementById('pdf-viewer');
+
+  pdfViewer.src = pdfUrl; // Gán đường dẫn PDF
+  modal.classList.remove('hidden'); // Hiển thị modal
+  document.body.style.overflow = 'hidden'; // Vô hiệu hóa cuộn nền
+}
+
+function closeArticleModal() {
+  const modal = document.getElementById('article-modal');
+  const pdfViewer = document.getElementById('pdf-viewer');
+
+  pdfViewer.src = ''; // Xóa PDF khi đóng modal
+  modal.classList.add('hidden'); // Ẩn modal
+  document.body.style.overflow = ''; // Cho phép cuộn lại
+}
+
+// Gắn sự kiện click cho ảnh bài báo
+document.addEventListener('DOMContentLoaded', () => {
+  const projectImages = document.querySelectorAll('.slide img');
+
+  projectImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      // Đổi URL PDF tương ứng từng bài báo
+      const pdfUrls = [
+        './assets/2.pdf',
+        './assets/article-linguistics.pdf',
+        './assets/article-marketing.pdf',
+        './assets/article-books.pdf',
+      ];
+      openArticleModal(pdfUrls[index]);
+    });
+  });
+});
+
+function openPDF(pdfUrl) {
+  const isMobile = window.innerWidth <= 768; // Kiểm tra thiết bị màn hình nhỏ (điện thoại)
+
+  if (isMobile) {
+    // Mở PDF trên tab mới nếu là điện thoại
+    window.open(pdfUrl, "_blank");
+  } else {
+    // Hiển thị PDF trong modal nếu là máy tính
+    const modal = document.getElementById('article-modal');
+    const pdfViewer = document.getElementById('pdf-viewer');
+
+    pdfViewer.src = pdfUrl;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Tắt cuộn nền
+  }
+}
+
+// Sự kiện click cho ảnh slide
+document.addEventListener('DOMContentLoaded', () => {
+  const projectImages = document.querySelectorAll('.slide img');
+
+  projectImages.forEach((img, index) => {
+    const pdfUrls = [
+      './assets/2.pdf',
+      './assets/article-linguistics.pdf',
+      './assets/article-marketing.pdf',
+      './assets/article-books.pdf',
+    ];
+
+    img.addEventListener('click', () => openPDF(pdfUrls[index]));
+  });
+});
